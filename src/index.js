@@ -6,8 +6,6 @@ import './index.css'
 import App from './App'
 import { mainRoutes } from './routers/index'
 import * as serviceWorker from './serviceWorker'
-// import Login from './pages/Login'
-// import List from './pages/admin/products/List'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,15 +13,9 @@ ReactDOM.render(
       <Switch>
         <Route path="/admin" render={(routeProps) => <App {...routeProps} />} />
         {mainRoutes.map((route) => {
-          return (
-            // <Route
-            //   key={route.path}
-            //   path={route.path}
-            //   component={route.component}
-            // />
-            <Route key={route.path} {...route} />
-          )
+          return <Route key={route.path} {...route} />
         })}
+        <Redirect to="/admin" from="/" />
         <Redirect to="/404" />
       </Switch>
     </Router>

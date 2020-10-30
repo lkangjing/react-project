@@ -21,6 +21,7 @@ export const adminRoutes = [
     component: Index,
     isShow: true,
     title: '看板',
+    icon: 'UserOutlined',
   },
   {
     path: '/admin/products',
@@ -28,9 +29,10 @@ export const adminRoutes = [
     isShow: true,
     exact: true,
     title: '商品管理',
+    icon: 'LaptopOutlined',
   },
   {
-    path: '/admin/products/edit/:id',
+    path: '/admin/products/edit/:id?',
     component: Edit,
     isShow: false,
   },
