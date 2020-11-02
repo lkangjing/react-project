@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Layout, Menu, Breadcrumb } from 'antd'
+import { Layout, Menu, Dropdown, message } from 'antd'
 import { withRouter } from 'react-router-dom'
 import logo from './logo.png'
 import * as Icon from '@ant-design/icons'
+import { clearToken } from '../../utils/auth'
 
 import './index.css'
 import { adminRoutes } from '../../routers/index'
@@ -13,6 +14,24 @@ class Index extends Component {
   iconBc = (name) => {
     return React.createElement(Icon && Icon[name])
   }
+  menuClick = (e) => {
+    console.log(e)
+    if (e.key === '3') {
+      clearToken()
+      this.props.history.push('/login')
+    } else {
+      message.info(e.key)
+    }
+  }
+  popMenu = (
+    <Menu onClick={this.menuClick}>
+      <Menu.Item key="1">通知中心</Menu.Item>
+      <Menu.Item key="2">设置</Menu.Item>
+      <Menu.Item key="3" danger>
+        退出
+      </Menu.Item>
+    </Menu>
+  )
   render() {
     return (
       <Layout>
@@ -21,6 +40,13 @@ class Index extends Component {
             <img src={logo} alt="" />
             {/* <Icon.LaptopOutlined /> */}
           </div>
+          <Dropdown overlay={this.popMenu}>
+            <div>
+              <Icon.UserOutlined />
+              <span style={{ color: '#eee' }}>超级管理员</span>
+              <Icon.DownOutlined />
+            </div>
+          </Dropdown>
         </Header>
         <Layout>
           <Sider width={200} className="site-layout-background">

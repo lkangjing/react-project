@@ -8,18 +8,16 @@ import { mainRoutes } from './routers/index'
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Router>
-      <Switch>
-        <Route path="/admin" render={(routeProps) => <App {...routeProps} />} />
-        {mainRoutes.map((route) => {
-          return <Route key={route.path} {...route} />
-        })}
-        <Redirect to="/admin" from="/" />
-        <Redirect to="/404" />
-      </Switch>
-    </Router>
-  </React.StrictMode>,
+  <Router>
+    <Switch>
+      <Route path="/admin" render={(routeProps) => <App {...routeProps} />} />
+      {mainRoutes.map((route) => {
+        return <Route key={route.path} {...route} />
+      })}
+      <Redirect to="/admin" from="/" />
+      <Redirect to="/404" />
+    </Switch>
+  </Router>,
   document.getElementById('root')
 )
 
